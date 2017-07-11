@@ -1,0 +1,21 @@
+build:
+  environment:
+    php: 7.0
+
+tools:
+  external_code_coverage:
+    enabled: true
+    timeout: 600
+
+  php_cs_fixer:
+    enabled: true
+    config:
+      level: symfony
+      fixers:
+        - align_double_arrow
+        - align_equals
+        - concat_with_spaces
+        - ordered_use
+        - short_array_syntax
+
+  sensiolabs_security_checker: true

@@ -1,0 +1,4 @@
+parameters:
+  title: "reddish"
+  baseUrl: "http://kazuakim.github.io/reddish/"
+  overwrite: true # bool
