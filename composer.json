@@ -1,0 +1,31 @@
+{
+    "name":        "KazuakiM/reddish",
+    "type":        "library",
+    "description": "Redis clients",
+    "keywords":    [
+        "redis"
+    ],
+    "homepage": "https://github.com/KazuakiM/reddish",
+    "license":  "MIT",
+    "authors":  [{
+        "name":     "KazuakiM",
+        "email":    "kazuaki_mabuchi_to_go@hotmail.co.jp",
+        "homepage": "https://kazuakim.github.io/aboutme/"
+    }],
+    "require": {
+        "php":       "^7.0",
+        "ext-redis": "*"
+    },
+    "scripts": {
+        "coverage": "php tests/bin/coveralls.phar --config=.coveralls.yml --coverage_clover=/tmp/build/coverage/clover.xml --verbose",
+        "csfixer":  "php vendor/bin/php-cs-fixer fix --dry-run --verbose",
+        "document": "apigen generate src tests --destination docs",
+        "quality":  "php tests/bin/ocular.phar code-coverage:upload --format=php-clover /tmp/build/coverage/clover.xml --verbose",
+        "test":     "phpunit --colors=always --coverage-clover=/tmp/build/coverage/clover.xml --verbose"
+    },
+    "autoload": {
+        "psr-4": {
+            "KazuakiM\\Reddish\\": "src/"
+        }
+    }
+}

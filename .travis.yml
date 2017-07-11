@@ -1,0 +1,31 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+
+sudo: true
+
+cache: vendor
+
+services:
+  - redis-server
+
+before_script:
+  - echo 'extension=redis.so' >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - composer require friendsofphp/php-cs-fixer
+  - composer install --no-progress --no-ansi --no-interaction --profile
+
+script:
+  - composer test
+  - composer csfixer
+
+after_success:
+  - mkdir -p /tmp/build/coverage
+  - composer quality
+  - composer coverage
+
+notifications:
+  email: false
+
+# vim:fdl=0:sts=2:sw=2:ts=2
