@@ -1,6 +1,6 @@
 <?php
 
-namespace KazuakiM\Reddish;
+namespace Kazuakim\Reddish;
 
 /**
  * ClientsTest.
@@ -42,7 +42,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
     } //}}}
 
     /**
-     * @expectedException        \KazuakiM\Reddish\ReddishException
+     * @expectedException        \Kazuakim\Reddish\ReddishException
      * @expectedExceptionCode    0
      * @expectedExceptionMessage connect errored.
      */
@@ -54,7 +54,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
     } //}}}
 
     /**
-     * @expectedException        \KazuakiM\Reddish\ReddishException
+     * @expectedException        \Kazuakim\Reddish\ReddishException
      * @expectedExceptionCode    0
      * @expectedExceptionMessage pconnect errored.
      */
@@ -67,7 +67,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
     } //}}}
 
     /**
-     * @expectedException        \KazuakiM\Reddish\ReddishException
+     * @expectedException        \Kazuakim\Reddish\ReddishException
      * @expectedExceptionCode    0
      * @expectedExceptionMessage Connection closed
      */

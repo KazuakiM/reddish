@@ -1,2 +1,2 @@
 var ApiGen = ApiGen || {};
-ApiGen.elements = [{"file":"namespace-KazuakiM.Reddish.html","label":"KazuakiM\\Reddish"},{"file":"class-KazuakiM.Reddish.Clients.html","label":"KazuakiM\\Reddish\\Clients"},{"file":"class-KazuakiM.Reddish.ClientsTest.html","label":"KazuakiM\\Reddish\\ClientsTest"}];
+ApiGen.elements = [{"file":"namespace-Kazuakim.Reddish.html","label":"Kazuakim\\Reddish"},{"file":"class-Kazuakim.Reddish.Clients.html","label":"Kazuakim\\Reddish\\Clients"},{"file":"class-Kazuakim.Reddish.ClientsTest.html","label":"Kazuakim\\Reddish\\ClientsTest"}];

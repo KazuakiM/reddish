@@ -1,6 +1,6 @@
 <?php
 
-namespace KazuakiM\Reddish;
+namespace Kazuakim\Reddish;
 
 /**
  * Clients.
