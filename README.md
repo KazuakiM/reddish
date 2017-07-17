@@ -9,10 +9,23 @@ reddish
 [![Document](https://img.shields.io/badge/document-gh--pages-brightgreen.svg?style=flat-square)](https://kazuakim.github.io/reddish/)
 [![license](https://img.shields.io/github/license/KazuakiM/reddish.svg?style=flat-square)](https://raw.githubusercontent.com/KazuakiM/reddish/master/LICENSE)
 
-##Author
+## Usage
+
+This Redis client is very simple, only connection supprot!
+```php
+$clients = new \Kazuakim\Reddish\Clients([
+    'host' => '127.0.0.1',
+    'port' => 6379
+]);
+
+$clients->set('key', 1); // normal phpredis functions.
+$clients->get('key');
+```
+
+## Author
 
 [KazuakiM](https://github.com/KazuakiM/)
 
-##License
+## License
 
 This software is released under the MIT License, see LICENSE.
