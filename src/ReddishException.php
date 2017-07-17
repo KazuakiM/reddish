@@ -1,6 +1,6 @@
 <?php
 
-namespace KazuakiM\Reddish;
+namespace Kazuakim\Reddish;
 
 /**
  * @copyright KazuakiM <kazuaki_mabuchi_to_go@hotmail.co.jp>

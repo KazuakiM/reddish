@@ -1,5 +1,5 @@
 {
-    "name":        "KazuakiM/reddish",
+    "name":        "kazuakim/reddish",
     "type":        "library",
     "description": "Redis clients",
     "keywords":    [
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "KazuakiM\\Reddish\\": "src/"
+            "Kazuakim\\Reddish\\": "src/"
         }
     }
 }

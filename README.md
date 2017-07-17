@@ -5,7 +5,8 @@ reddish
 [![Coveralls](https://img.shields.io/coveralls/KazuakiM/reddish.svg?style=flat-square)](https://coveralls.io/github/KazuakiM/reddish?branch=master)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/KazuakiM/reddish.svg?style=flat-square)](https://scrutinizer-ci.com/g/KazuakiM/reddish/)
 [![GitHub issues](https://img.shields.io/github/issues/KazuakiM/reddish.svg?style=flat-square)](https://github.com/KazuakiM/reddish/issues)
-[![Document](https://img.shields.io/badge/document-gh--pages-brightgreen.svg?style=flat-square)](http://kazuakim.github.io/reddish/)
+[![Packagist](https://img.shields.io/packagist/dt/kazuakim/reddish.svg?style=flat-square)](https://packagist.org/packages/kazuakim/reddish)
+[![Document](https://img.shields.io/badge/document-gh--pages-brightgreen.svg?style=flat-square)](https://kazuakim.github.io/reddish/)
 [![license](https://img.shields.io/github/license/KazuakiM/reddish.svg?style=flat-square)](https://raw.githubusercontent.com/KazuakiM/reddish/master/LICENSE)
 
 ##Author
