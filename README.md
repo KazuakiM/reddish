@@ -13,13 +13,17 @@ reddish
 
 This Redis client is very simple, only connection supprot!
 ```php
-$clients = new \Kazuakim\Reddish\Clients([
-    'host' => '127.0.0.1',
-    'port' => 6379
-]);
+try {
+    $clients = new \Kazuakim\Reddish\Clients([
+        'host' => '127.0.0.1',
+        'port' => 6379
+    ]);
 
-$clients->set('key', 1); // normal phpredis functions.
-$clients->get('key');
+    $clients->set('key', 1); // normal phpredis functions.
+    $clients->get('key');
+} catch (ReddishException $e) {
+    ...
+}
 ```
 
 ## Author
