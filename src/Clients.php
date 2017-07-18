@@ -5,6 +5,9 @@ namespace Kazuakim\Reddish;
 /**
  * Clients.
  *
+ * @property array $config
+ * @property array $_defaultConfig
+ *
  * @copyright KazuakiM <kazuaki_mabuchi_to_go@hotmail.co.jp>
  * @author    KazuakiM <kazuaki_mabuchi_to_go@hotmail.co.jp>
  * @license   http://www.opensource.org/licenses/mit-license.php  MIT License
@@ -14,71 +17,96 @@ namespace Kazuakim\Reddish;
 class Clients extends \Redis //{{{
 {
     protected $config;
-    private static $_defaultConfig = [
-        'host' => null,           //can be a host, or the path to a unix domain socket
+    private $_defaultConfig = [
+        'host' => null,        //can be a host, or the path to a unix domain socket
         'port' => 6379,
-        'timeout' => 0.0,         //value in seconds (optional, default is 0 meaning unlimited)
-        'reserved' => null,       //should be NULL if retry_interval is specified
-        'retry_interval' => null, //value in milliseconds
-        'persistent_id' => '',    //identity for the requested persistent connection
+        'timeout' => 0.0,      //value in seconds (optional, default is 0 meaning unlimited)
+        'reserved' => null,    //should be NULL if retry_interval is specified
+        'persistent_id' => '', //identity for the requested persistent connection
         'password' => null,
         'serializer' => \Redis::SERIALIZER_NONE,
-        'persistent' => false,    //default is connect
+        'persistent' => false, //default is connect
     ];
 
+    /**
+     * __construct.
+     *
+     * @param array $config
+     *
+     * @throws \RedisException
+     */
     public function __construct(array $config) //{{{
     {
-        $this->config = array_merge(self::$_defaultConfig, $config);
+        $this->config = array_merge($this->_defaultConfig, $config);
 
         $this->connection();
     } //}}}
 
-    public function connection() //{{{
+    /**
+     * connection.
+     *
+     * @throws \RedisException
+     *
+     * @return \Kazuakim\Reddish\Clients
+     */
+    public function connection(): \Kazuakim\Reddish\Clients //{{{
     {
         // connect
-        if (!$this->config['persistent'] && !@$this->connect($this->config['host'], $this->config['port'], $this->config['timeout'], $this->config['reserved'], $this->config['retry_interval'])) {
-            throw new ReddishException('connect errored.');
-        } elseif (!@$this->pconnect($this->config['host'], $this->config['port'], $this->config['timeout'], $this->config['persistent_id'], $this->config['retry_interval'])) {
-            throw new ReddishException('pconnect errored.');
+        if (!$this->config['persistent'] && !@$this->connect($this->config['host'], $this->config['port'], $this->config['timeout'], $this->config['reserved'])) {
+            throw new \RedisException('connect errored.');
+        } elseif (!@$this->pconnect($this->config['host'], $this->config['port'], $this->config['timeout'], $this->config['persistent_id'])) {
+            throw new \RedisException('pconnect errored.');
         }
 
         // auth
-        if (0 < strlen($this->config['password']) && !$this->auth($this->config['password'])) {
-            throw new ReddishException('auth errored.');
+        if (0 < strlen($this->config['password']) && !@$this->auth($this->config['password'])) {
+            throw new \RedisException('auth errored.');
         }
 
         // serializer
         $this->setSerializer($this->config['serializer']);
+
+        return $this;
     } //}}}
 
-    public function setSerializer($serializer) //{{{
+    /**
+     * setSerializer.
+     *
+     * @param int $serializer
+     *
+     * @throws \Expectation
+     *
+     * @return \Kazuakim\Reddish\Clients
+     */
+    public function setSerializer($serializer): \Kazuakim\Reddish\Clients //{{{
     {
         assert(in_array($serializer, self::_getSerializerArray(), true), 'serializer setting errored.');
 
-        if (!$this->setOption(\Redis::OPT_SERIALIZER, $serializer)) {
-            throw new ReddishException('serializer errored.');
-        }
+        $this->setOption(\Redis::OPT_SERIALIZER, $serializer);
+
+        return $this;
     } //}}}
 
+    /**
+     * close.
+     */
     public function close() //{{{
     {
         if ($this->config['persistent']) {
             parent::close();
         }
+
+        return;
     } //}}}
 
-    public function ping() //{{{
-    {
-        try {
-            parent::ping();
-        } catch (\RedisException $e) {
-            throw new ReddishException($e->getMessage());
-        }
-    } //}}}
-
+    /**
+     * _getSerializerArray.
+     *
+     * @return array
+     */
     private static function _getSerializerArray(): array //{{{
     {
-        if (extension_loaded('igbinary') === false) {
+        if (false === extension_loaded('igbinary')) {
             return [
                 \Redis::SERIALIZER_NONE,
                 \Redis::SERIALIZER_PHP,
