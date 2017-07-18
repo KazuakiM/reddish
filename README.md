@@ -21,7 +21,7 @@ try {
 
     $clients->set('key', 1); // normal phpredis functions.
     $clients->get('key');
-} catch (ReddishException $e) {
+} catch (\RedisException $e) {
     ...
 }
 ```

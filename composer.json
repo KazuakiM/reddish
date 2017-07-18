@@ -16,10 +16,14 @@
         "php":       "^7.0",
         "ext-redis": "*"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.6",
+        "phpunit/phpunit": "^5.7"
+    },
     "scripts": {
         "coverage": "php tests/bin/coveralls.phar --config=.coveralls.yml --coverage_clover=/tmp/build/coverage/clover.xml --verbose",
-        "csfixer":  "php vendor/bin/php-cs-fixer fix --dry-run --verbose",
-        "document": "apigen generate src tests --destination docs",
+        "csfixer":  "php vendor/bin/php-cs-fixer fix --dry-run",
+        "document": "php vendor/bin/apigen generate --source src --destination docs",
         "quality":  "php tests/bin/ocular.phar code-coverage:upload --format=php-clover /tmp/build/coverage/clover.xml --verbose",
         "test":     "phpunit --colors=always --coverage-clover=/tmp/build/coverage/clover.xml --verbose"
     },
