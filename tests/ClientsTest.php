@@ -22,11 +22,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
         'host' => '127.0.0.1', //can be a host, or the path to a unix domain socket
         'port' => 6379,
         'timeout' => 1.0,      //value in seconds (optional, default is 0 meaning unlimited)
-        'reserved' => null,    //should be NULL if retry_interval is specified
         'read_timeout' => 1.0, //value in seconds (optional, default is 0 meaning unlimited)
-
-        // 'pconnect' paramater
-        'persistent_id' => '', //identity for the requested persistent connection
 
         // 'auth' paramater
         'password' => null,

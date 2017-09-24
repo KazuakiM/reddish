@@ -19,7 +19,7 @@ try {
         'port' => 6379
     ]);
 
-    $clients->set('key', 1); // normal phpredis functions.
+    $clients->set('key', '1'); // normal phpredis functions.
     $clients->get('key');
 } catch (\RedisException $e) {
     ...

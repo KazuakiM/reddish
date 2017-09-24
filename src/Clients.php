@@ -21,8 +21,6 @@ class Clients extends \Redis //{{{
         'host' => null,        //can be a host, or the path to a unix domain socket
         'port' => 6379,
         'timeout' => 0.0,      //value in seconds (optional, default is 0 meaning unlimited)
-        'reserved' => null,    //should be NULL if retry_interval is specified
-        'persistent_id' => '', //identity for the requested persistent connection
         'password' => null,
         'serializer' => \Redis::SERIALIZER_NONE,
         'persistent' => false, //default is connect
@@ -52,9 +50,9 @@ class Clients extends \Redis //{{{
     public function connection(): \Kazuakim\Reddish\Clients //{{{
     {
         // connect
-        if (!$this->config['persistent'] && !@$this->connect($this->config['host'], $this->config['port'], $this->config['timeout'], $this->config['reserved'])) {
+        if (!$this->config['persistent'] && !@$this->connect($this->config['host'], $this->config['port'], $this->config['timeout'])) {
             throw new \RedisException('connect errored.');
-        } elseif (!@$this->pconnect($this->config['host'], $this->config['port'], $this->config['timeout'], $this->config['persistent_id'])) {
+        } elseif (!@$this->pconnect($this->config['host'], $this->config['port'], $this->config['timeout'])) {
             throw new \RedisException('pconnect errored.');
         }
 
