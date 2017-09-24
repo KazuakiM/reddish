@@ -87,6 +87,20 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
     } //}}}
 
     /**
+     * testAuthError.
+     *
+     * @expectedException        \RedisException
+     * @expectedExceptionCode    0
+     * @expectedExceptionMessage auth errored.
+     */
+    public function testAuthError() //{{{
+    {
+        $config = $this->_defaultConfig;
+        $config['password'] = 'dummy';
+        $clients = new Clients($config);
+    } //}}}
+
+    /**
      * testPingError.
      *
      * @expectedException        \RedisException
