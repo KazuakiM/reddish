@@ -18,20 +18,12 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
 {
     // Class variable {{{
     private $_defaultConfig = [
-        // 'connect' paramater
-        'host' => '127.0.0.1', //can be a host, or the path to a unix domain socket
+        'host' => '127.0.0.1',
         'port' => 6379,
-        'timeout' => 1.0,      //value in seconds (optional, default is 0 meaning unlimited)
-        'read_timeout' => 1.0, //value in seconds (optional, default is 0 meaning unlimited)
-
-        // 'auth' paramater
+        'timeout' => 1.0,
         'password' => null,
-
-        // serializer
         'serializer' => \Redis::SERIALIZER_NONE,
-
-        // 'connect' or 'pconnect'
-        'persistent' => false, //default is connect
+        'persistent' => false,
     ];
 
     private $_clients;
@@ -65,6 +57,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
         $config = $this->_defaultConfig;
         $config['host'] = '127.0.0.2';
         $clients = new Clients($config);
+        unset($clients);
     } //}}}
 
     /**
@@ -80,6 +73,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
         $config['host'] = '127.0.0.2';
         $config['persistent'] = true;
         $clients = new Clients($config);
+        unset($clients);
     } //}}}
 
     /**
@@ -94,6 +88,7 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
         $config = $this->_defaultConfig;
         $config['password'] = 'dummy';
         $clients = new Clients($config);
+        unset($clients);
     } //}}}
 
     /**
@@ -117,30 +112,14 @@ class ClientsTest extends \PHPUnit\Framework\TestCase //{{{
      */
     public function testConnection() //{{{
     {
-        $this->assertTrue($this->_clients->isConnected());
-
         $config = $this->_defaultConfig;
         $config['persistent'] = true;
         $clients = new Clients($config);
-        $this->assertTrue($clients->isConnected());
+        $this->assertTrue($clients-> /* @scrutinizer ignore-call */ isConnected());
         $clients->ping();
         $clients->close();
 
-        unset($clients);
-    } //}}}
-
-    /**
-     * testIsConnected.
-     */
-    public function testIsConnected() //{{{
-    {
-        $config = $this->_defaultConfig;
-        $config['persistent'] = true;
-        $clients = new Clients($config);
-        $this->assertTrue($clients->isConnected());
-        $clients->close();
-
-        $this->assertFalse($clients->isConnected());
+        $this->assertFalse($clients-> /* @scrutinizer ignore-call */ isConnected());
         $clients->close();
     } //}}}
 

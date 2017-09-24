@@ -13,7 +13,8 @@ services:
 
 before_script:
   - echo 'extension=redis.so' >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - composer install --no-progress --no-ansi --no-interaction --profile
+  - composer global require hirak/prestissimo --no-interaction --quiet
+  - composer install --no-interaction --quiet
 
 script:
   - composer test

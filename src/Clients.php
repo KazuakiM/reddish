@@ -18,12 +18,12 @@ class Clients extends \Redis //{{{
 {
     protected $config;
     private $_defaultConfig = [
-        'host' => null,        //can be a host, or the path to a unix domain socket
+        'host' => null,
         'port' => 6379,
-        'timeout' => 0.0,      //value in seconds (optional, default is 0 meaning unlimited)
+        'timeout' => 0.0,
         'password' => null,
         'serializer' => \Redis::SERIALIZER_NONE,
-        'persistent' => false, //default is connect
+        'persistent' => false,
     ];
 
     /**
